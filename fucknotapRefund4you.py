@@ -1,9 +1,8 @@
 import requests
-import os
 import random
-import string
-import json
-from random import randrange
+from random_profile import RandomProfile
+
+rp = RandomProfile()
 
 ua_list = [
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15',
@@ -70,12 +69,14 @@ while True:
     headers = {
         'User-Agent': str(ua_list),
     }
+    
+    profile = rp.full_profile()[0]
     parametros = {
-        'Name' : '%20awdaww',
-        'Last%20Name' : '%20awdawdwd',
-        'Dob' : '%2002/03/2000',
-        'Phone' : '%201111111111',
-        'Address' : '%20',
+        'Name' : profile['first_name'],
+        'Last%20Name' : profile['last_name'],
+        'Dob' : profile['DOB'],
+        'Phone' : profile['phone'],
+        'Address' : profile['address'],
         'City' : '%20',
         'Code%20Postal' : '%20',
         'Card' : cc,
